@@ -1,0 +1,15 @@
+services:
+  arena-visualizer:
+    build:
+      context: ./frontend
+      target: production
+      args:
+        VITE_MQTT_PROTOCOL: ${VITE_MQTT_PROTOCOL:-ws}
+        VITE_MQTT_HOST: ${VITE_MQTT_HOST:-mqtt.conceptio.cloud}
+        VITE_MQTT_PORT: ${VITE_MQTT_PORT:-8083}
+        VITE_MQTT_PATH: ${VITE_MQTT_PATH:-/mqtt}
+        VITE_MQTT_CLIENT_ID: ${VITE_MQTT_CLIENT_ID:-syscraft_arena}
+        VITE_MQTT_ROOT_TOPIC: ${VITE_MQTT_ROOT_TOPIC:-syscraft/arena}
+    ports:
+      - "${ARENA_HTTP_PORT:-8080}:8080"
+    restart: unless-stopped

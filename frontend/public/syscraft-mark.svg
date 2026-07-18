@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SysCraft Arena">
+  <rect width="64" height="64" rx="10" fill="#071017"/>
+  <path d="M18 20h28M18 44h28M22 20l20 24M42 20 22 44" fill="none" stroke="#42d1a7" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="18" cy="20" r="5" fill="#4fa6ff"/>
+  <circle cx="46" cy="20" r="5" fill="#f0c96a"/>
+  <circle cx="18" cy="44" r="5" fill="#f27d72"/>
+  <circle cx="46" cy="44" r="5" fill="#42d1a7"/>
+</svg>

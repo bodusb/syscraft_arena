@@ -1,0 +1,35 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      target: development
+    container_name: syscraft-arena-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - VITE_DEV_SERVER_HOST=0.0.0.0
+    command: npm run dev -- --host 0.0.0.0
+
+  adsb-broker-plugin:
+    build:
+      context: ./plugins/adsb-broker
+      target: development
+    container_name: syscraft-adsb-broker-plugin
+    ports:
+      - "5174:5174"
+      - "5175:5175"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - ADSB_PLUGIN_API_PORT=5175
+      - SYSCRAFT_MQTT_PROTOCOL=ws
+      - SYSCRAFT_MQTT_HOST=mqtt.conceptio.cloud
+      - SYSCRAFT_MQTT_PORT=8083
+      - SYSCRAFT_MQTT_PATH=/mqtt
+      - SYSCRAFT_MQTT_ROOT_TOPIC=syscraft/arena
+      - SYSCRAFT_MQTT_USERNAME=chris
+      - SYSCRAFT_MQTT_PASSWORD=${SYSCRAFT_MQTT_PASSWORD:-}
+    command: npm run dev
